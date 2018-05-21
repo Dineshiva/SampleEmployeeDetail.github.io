@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <record model="employeedetail.list" id="list0">
+            <field name="name">List 0</field>
+             <field name="email">List 0</field>
+            <field name="team">List 0's team
+
+Can have multiple lines
+            </field>
+        </record>
+        <record model="employeedetail.list" id="list1">
+            <field name="name">List 1</field>
+             <field name="email">List 1's email</field>
+            <!-- no description for this one -->
+        </record>
+        <record model="employeedetail.list" id="list2">
+            <field name="name">List 2</field>
+             <field name="email">List 2's email</field>
+            <field name="team">List 2's team</field>
+        </record>
+    </data>
+</odoo>

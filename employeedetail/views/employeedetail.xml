@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+         <template id="assets_backend" name="employeedetail assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+		<!--These links will be called when loading your Odoo -->
+                 <link rel="stylesheet" href="employeedetail/static/src/css/emp.css"/>
+            </xpath>
+        </template>
+
+        <record model="ir.ui.view" id="list_list_view">
+            <field name="name">Lists</field>
+            <field name="model">employeedetail.list</field>
+            <field name="arch" type="xml">
+                <tree string ="Employee List">
+                    <field name="name"/>
+                    <field name="team"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="secondlist_list_view">
+            <field name="name">SecondLists</field>
+            <field name="model">employeedetail.secondlist</field>
+            <field name="type">kanban</field>
+            <field name="arch" type="xml">
+                <kanban string ="Secondary List">
+                  <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_resource_vignette">
+                        <div class="oe_resource_image">
+                            <a type="edit"><img t-att-src="kanban_image('employeedetail.secondlist', 'photo', record.id.value)" class="oe_resource_picture"/></a>
+                        </div>
+                        <div class="oe_resource_details">
+                            <ul>
+<!--Here u have to write the ur objects field name which u wnt to display in kanban view -->
+                               <li><field name="secondname"/></li>
+                               <li><field name="phoneno"/></li>
+
+                             </ul>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+
+                </kanban>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="list_list_action">
+            <field name="name">Lists</field>
+            <field name="res_model">employeedetail.list</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first employee
+                </p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="secondlist_list_action">
+            <field name="name">SecondLists</field>
+            <field name="res_model">employeedetail.secondlist</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first employee
+                </p>
+            </field>
+        </record>
+
+
+
+
+        <menuitem id="main_employeedetail_menu" name="Employee Detail"/>
+
+
+        <menuitem id="employeedetail_menu" name="Employee Detail"
+                  parent="main_employeedetail_menu"/>
+
+
+        <menuitem id="lists_menu" name="Lists" parent="employeedetail_menu"
+                  action="list_list_action"/>
+
+          <menuitem id="secondlists_menu" name="SecondLists" parent="employeedetail_menu"
+                  action="secondlist_list_action"/>
+
+    </data>
+</odoo>
